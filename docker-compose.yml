@@ -10,8 +10,4 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
-    volumes:
-      - ./.next/standalone:/app
-      - ./.next/static:/app/.next/static
-      - ./public:/app/public
     command: ["node", "server.js"]

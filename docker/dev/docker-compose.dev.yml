@@ -3,15 +3,15 @@ version: '3.8'
 services:
   app:
     build:
-      context: ../..  # プロジェクトルートをビルドコンテキストに設定
-      dockerfile: docker/dev/Dockerfile.dev  # Dockerfile.dev のパスをルートからの相対パスで指定
-    image: next-blog-app:dev  # イメージ名は統一
-    container_name: next-blog-app-dev  # コンテナ名を明示的に指定
+      context: ../..
+      dockerfile: docker/dev/Dockerfile.dev
+    image: next-blog-app:dev
+    container_name: next-blog-app-dev
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
     volumes:
-      - ../..:/app  # プロジェクトルートを /app にマウント
+      - ../..:/app
       - /app/node_modules
     command: ["npm", "run", "dev"]

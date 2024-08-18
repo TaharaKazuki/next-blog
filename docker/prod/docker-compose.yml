@@ -3,11 +3,11 @@ version: '3.8'
 services:
   app:
     build:
-      context: ../..  # プロジェクトルートをビルドコンテキストに設定
-      dockerfile: docker/prod/Dockerfile  # Dockerfile のパスをルートからの相対パスで指定
+      context: ../..
+      dockerfile: docker/prod/Dockerfile
       target: runner
-    image: next-blog-app:prod  # イメージ名は統一
-    container_name: next-blog-app-prod  # コンテナ名を明示的に指定
+    image: next-blog-app:prod
+    container_name: next-blog-app-prod
     ports:
       - "3000:3000"
     environment:

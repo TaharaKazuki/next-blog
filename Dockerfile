@@ -13,6 +13,7 @@ RUN npm run build
 FROM node:20-alpine AS runner
 
 COPY --from=builder /.next/standalone ./
+COPY --from=builder /node_modules ./node_modules
 COPY --from=builder /public ./public
 COPY --from=builder /.next/static ./.next/static
 

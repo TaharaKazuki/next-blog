@@ -1,25 +1,46 @@
-FROM node:20-alpine AS deps
+FROM node:20-alpine AS base
 
-COPY package*.json ./
+# 基本イメージに依存関係をインストールするためのステージ
+FROM base AS deps
+
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+COPY package.json package-lock.json ./
 
 RUN npm ci
 
-FROM node:20-alpine AS builder
+# アプリケーションをビルドするためのステージ
+FROM base AS builder
+WORKDIR /app
 
+# 正しいパスでnode_modulesをコピー
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-COPY --from=deps /node_modules ./node_modules
+
 RUN npm run build
 
-FROM node:20-alpine AS runner
+# 実行するための最終ステージ
+FROM base AS runner
+WORKDIR /app
 
-COPY --from=builder /.next/standalone ./
-COPY --from=builder /public ./public
-COPY --from=builder /.next/static ./.next/static
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
 
 EXPOSE 3000
 
 ENV PORT 3000
 
 CMD HOSTNAME="0.0.0.0" node server.js
-
-

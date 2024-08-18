@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ../..  # プロジェクトルートをビルドコンテキストに設定
+      dockerfile: docker/prod/Dockerfile  # Dockerfile のパスをルートからの相対パスで指定
+      target: runner
+    image: next-blog-app:prod  # イメージ名は統一
+    container_name: next-blog-app-prod  # コンテナ名を明示的に指定
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    command: ["node", "server.js"]

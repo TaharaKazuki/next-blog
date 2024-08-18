@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     image: next-blog-app-dev:latest
+    container_name: next-blog-app-dev
     ports:
       - "3000:3000"
     environment:

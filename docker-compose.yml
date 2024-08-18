@@ -11,6 +11,7 @@ services:
     environment:
       - PORT=3000
     volumes:
-      - .:/app
-      - /app/node_modules
+      - ./.next/standalone:/app
+      - ./.next/static:/app/.next/static
+      - ./public:/app/public
     command: ["node", "server.js"]

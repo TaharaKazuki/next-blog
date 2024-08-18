@@ -1,6 +1,5 @@
 FROM node:20-alpine AS base
 
-# 基本イメージに依存関係をインストールするためのステージ
 FROM base AS deps
 
 RUN apk add --no-cache libc6-compat
@@ -10,17 +9,14 @@ COPY package.json package-lock.json ./
 
 RUN npm ci
 
-# アプリケーションをビルドするためのステージ
 FROM base AS builder
 WORKDIR /app
 
-# 正しいパスでnode_modulesをコピー
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN npm run build
 
-# 実行するための最終ステージ
 FROM base AS runner
 WORKDIR /app
 

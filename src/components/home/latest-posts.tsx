@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { getBlogPost } from '@/app/blog/contents/utils';
+import { formatDate, getBlogPost } from '@/app/blog/contents/utils';
 
 const LatestPosts = () => {
   const latestPosts = getBlogPost();
@@ -22,8 +22,14 @@ const LatestPosts = () => {
               href={`/blog/${post.metadata.category}/${post.slug}`}
               className="cursor-pointer"
             >
-              <h3>{post.metadata.title}</h3>
+              <h3 className="py-2 font-bold leading-5 hover:text-blue-400">
+                {post.metadata.title}
+              </h3>
             </Link>
+            <p className="my-5 leading-8">{post.metadata.summary}</p>
+            <p className="text-sm text-muted-foreground">
+              {formatDate(post.metadata.publishedAt)}
+            </p>
           </article>
         ))}
     </>

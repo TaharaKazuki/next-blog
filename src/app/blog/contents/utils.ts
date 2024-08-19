@@ -1,7 +1,7 @@
 import { format, formatDistanceToNow, parseISO } from 'date-fns';
-import * as fs from 'fs';
+import fs from 'fs';
 import matter from 'gray-matter';
-import * as path from 'path';
+import path from 'path';
 
 const getMDXfiles = (dir: string) => {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
@@ -20,7 +20,7 @@ const getMDXData = (dir: string) => {
     const slug = path.basename(file, path.extname(file));
 
     return {
-      medadata: data,
+      metadata: data,
       slug,
       content,
     };
@@ -28,7 +28,7 @@ const getMDXData = (dir: string) => {
 };
 
 export const getBlogPost = () => {
-  return getMDXData(path.join(process.cwd(), 'src', 'app', 'blog', 'content'));
+  return getMDXData(path.join(process.cwd(), 'src', 'app', 'blog', 'contents'));
 };
 
 export const formatDate = (date: string, includeRelative = false) => {

@@ -1,5 +1,6 @@
 import Container from '@/components/Container';
 import LatestPosts from '@/components/home/latest-posts';
+import PopularPosts from '@/components/home/popular-posts';
 import TopCatagories from '@/components/home/top-categories';
 import { MainNav } from '@/components/main-nav';
 
@@ -18,7 +19,7 @@ export default function Home() {
           </div>
           <div className="sticky top-0">
             <h1 className="mb-4 font-bold">POPULAR POSTS</h1>
-            {/* <PopularPosts /> */}
+            <PopularPosts />
           </div>
         </div>
       </main>

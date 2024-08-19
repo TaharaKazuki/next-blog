@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import '@/styles/globals.css';
+import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/providers/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -25,7 +26,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main>{children}</main>
+          <main
+            className={cn('container mx-auto w-full max-w-screen-xl md:px-20')}
+          >
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

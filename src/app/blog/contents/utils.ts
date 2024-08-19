@@ -31,7 +31,7 @@ export const getBlogPost = () => {
   return getMDXData(path.join(process.cwd(), 'src', 'app', 'blog', 'contents'));
 };
 
-export const formatDate = (date: string, includeRelative = true) => {
+export const formatDate = (date: string, includeRelative = false) => {
   if (!date.includes('T')) {
     date = `${date}T00:00:00`;
   }

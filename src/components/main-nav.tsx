@@ -4,7 +4,7 @@ import Link from 'next/link';
 import * as React from 'react';
 
 import { Icons } from './icons';
-import { ModeToggle } from './ui/mode-toggle';
+import ModeToggle from './ui/mode-toggle';
 import {
   NavigationMenu,
   NavigationMenuContent,

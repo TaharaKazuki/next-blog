@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import * as React from 'react';
 
+import { Icons } from './icons';
+import { ModeToggle } from './ui/mode-toggle';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -23,8 +25,11 @@ export function MainNav({ className }: { className?: string }) {
         className
       )}
     >
-      <Link className="flex w-32 items-center justify-between" href={'/'}>
-        <div>Coding</div>
+      <Link href={'/'}>
+        <div className="flex items-center justify-between gap-2">
+          <Icons.logo className="size-6" />
+          <p>Coding</p>
+        </div>
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
@@ -44,20 +49,17 @@ export function MainNav({ className }: { className?: string }) {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/about" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                About
-              </NavigationMenuLink>
+
+          <div className="flex items-center justify-between gap-3">
+            {/* Mode Toggle */}
+            <ModeToggle />
+            {/* RSS */}
+            <Link href={'/rss'}>
+              <Icons.rss className="size-6" />
             </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/about" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                About
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+          </div>
+
+          {/* About */}
           <NavigationMenuItem>
             <Link href="/about" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>

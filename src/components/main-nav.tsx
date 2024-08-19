@@ -49,16 +49,6 @@ export function MainNav({ className }: { className?: string }) {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-
-          <div className="flex items-center justify-between gap-3">
-            {/* Mode Toggle */}
-            <ModeToggle />
-            {/* RSS */}
-            <Link href={'/rss'}>
-              <Icons.rss className="size-6" />
-            </Link>
-          </div>
-
           {/* About */}
           <NavigationMenuItem>
             <Link href="/about" legacyBehavior passHref>
@@ -69,6 +59,14 @@ export function MainNav({ className }: { className?: string }) {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      <div className="flex items-center justify-between gap-3">
+        {/* Mode Toggle */}
+        <ModeToggle />
+        {/* RSS */}
+        <Link href={'/rss'}>
+          <Icons.rss className="size-6" />
+        </Link>
+      </div>
     </div>
   );
 }

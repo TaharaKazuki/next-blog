@@ -33,3 +33,14 @@ export const POSTS: { title: string; href: string; description: string }[] = [
       'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
   },
 ];
+
+export const FOOTER_LINKS: {
+  href: string;
+  label: string;
+  external?: boolean;
+}[] = [
+  { href: 'mailto:w3tsadev@gmail.com', label: 'Contact', external: true },
+  { href: '/terms-of-services', label: 'Terms of Services' },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/sitemap.xml', label: 'Sitemap' },
+];

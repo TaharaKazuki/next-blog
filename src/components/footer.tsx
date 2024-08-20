@@ -1,6 +1,8 @@
 import Link from 'next/link';
 
 import { Icons } from './icons';
+import { Button } from './ui/button';
+import { Input } from '@/components/ui/input';
 import { POSTS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
@@ -90,7 +92,20 @@ const Footer = () => {
               Subscribe to our newsletter to stay up-to-date with the latest
               news and updates.
             </p>
+            <form>
+              <div className="flex space-x-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1"
+                />
+                <Button>Subscribe</Button>
+              </div>
+            </form>
           </div>
+        </div>
+        <div className="mt-8 border-gray-200 pt-4 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
+          &copy; 2024 Coding All rights reserved.
         </div>
       </div>
     </footer>

@@ -10,9 +10,28 @@ const Footer = () => {
               <Icons.logo className="size-6" />
               <span className="text-base font-semibold">Coding</span>
             </div>
-            <p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Stay Up to Date with the latest news and insights from out blog.
             </p>
+            <div className="flex space-x-4">
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+              >
+                <Icons.X className="size-6 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300" />
+              </a>
+
+              <a
+                href="https://github.com/TaharaKazuki"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Github"
+              >
+                <Icons.gitHub className="size-6 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

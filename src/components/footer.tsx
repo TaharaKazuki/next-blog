@@ -82,6 +82,15 @@ const Footer = () => {
               ))}
             </ul>
           </div>
+
+          {/* grid 4 */}
+          <div className="space-y-4">
+            <h3 className="text-base font-semibold">NewsLetter</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Subscribe to our newsletter to stay up-to-date with the latest
+              news and updates.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

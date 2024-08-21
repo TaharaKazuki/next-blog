@@ -98,6 +98,7 @@ const Footer = () => {
                   type="email"
                   placeholder="Enter your email"
                   className="flex-1"
+                  aria-describedby="email"
                 />
                 <Button>Subscribe</Button>
               </div>

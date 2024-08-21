@@ -29,7 +29,7 @@ const sortPostsByDate = (posts: ReturnType<typeof filterPostsByCategory>) => {
 const CategoryPage = ({ params }: CategoryPageProps) => {
   const posts = filterPostsByCategory(params.category);
 
-  if (!posts) notFound();
+  if (!posts.length) notFound();
 
   const sortedPosts = sortPostsByDate(posts);
 
@@ -38,7 +38,7 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
       <Header>
         <Container>
           <h1 className="title mt-4 text-2xl font-semibold uppercase tracking-wider">
-            {posts[0].metadata.category}
+            {posts[0]?.metadata.category}
           </h1>
         </Container>
       </Header>

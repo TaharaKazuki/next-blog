@@ -15,7 +15,7 @@ type CardCategoryProps = {
 
 const CardCategory = ({ title, summary, date }: CardCategoryProps) => {
   return (
-    <Card className="h-[290px] w-[350px] shadow-lg">
+    <Card className="flex h-full flex-col justify-between shadow-lg">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardContent>

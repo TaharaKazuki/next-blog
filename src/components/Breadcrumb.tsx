@@ -1,5 +1,3 @@
-import { Slash } from 'lucide-react';
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,15 +22,11 @@ export function BreadcrumbWithCustomSeparator({
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash />
-        </BreadcrumbSeparator>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbLink href={`/blog/${category}`}>{category}</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash />
-        </BreadcrumbSeparator>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbPage>{slug}</BreadcrumbPage>
         </BreadcrumbItem>

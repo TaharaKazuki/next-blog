@@ -1,4 +1,4 @@
-import { Post, Prisma, PrismaClient, User } from '@prisma/client';
+import { Post, PrismaClient, User } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
@@ -69,37 +69,25 @@ async function main() {
     })
   );
 
-  // 投稿を作成 (各ユーザーに対して異なる投稿を割り当て)
-  const postsData: Prisma.PostCreateInput[] = [];
-
-  users.forEach((user, userIndex) => {
-    // 各ユーザーに2つの投稿を割り当て
+  // 各ユーザーごとに投稿を個別に作成
+  for (const [userIndex, user] of users.entries()) {
     const startIdx = userIndex * 2;
-    const userPosts = dummyPostsData
-      .slice(startIdx, startIdx + 2)
-      .map((post) => ({
-        ...post,
-        topImage: getRandomImage(),
-        author: {
-          connect: {
-            id: user.id,
+    const endIdx = startIdx + 2;
+
+    // 各ユーザーの投稿を作成
+    await Promise.all(
+      dummyPostsData.slice(startIdx, endIdx).map((post) => {
+        const postData = {
+          ...post,
+          topImage: getRandomImage(),
+          author: {
+            connect: { id: user.id },
           },
-        },
-      }));
-
-    postsData.push(...userPosts);
-  });
-
-  const posts = await Promise.all(
-    postsData.map((postData) =>
-      prisma.post.create({
-        data: postData,
+        };
+        return prisma.post.create({ data: postData });
       })
-    )
-  );
-
-  console.info(`ユーザーが作成されました`, users);
-  console.info(`投稿が作成されました`, posts);
+    );
+  }
 }
 
 main()

@@ -1,10 +1,9 @@
 import { z } from 'zod';
 
-import { ClientPost, ClientPostSchema, PostSchema } from '@/types/post';
+import { prisma } from '@/lib/prisma';
+import { ClientPostSchema, Post } from '@/types/post';
 
-import { prisma } from './prisma';
-
-export const getPosts = async (): Promise<ClientPost[]> => {
+export const getPosts = async (): Promise<Post[]> => {
   const posts = await prisma.post.findMany({
     where: { published: true },
     include: {
@@ -17,9 +16,5 @@ export const getPosts = async (): Promise<ClientPost[]> => {
     orderBy: { createdAt: 'desc' },
   });
 
-  // zodを使ってデータを検証・変換
-  return z
-    .array(PostSchema)
-    .parse(posts)
-    .map((post) => ClientPostSchema.parse(post));
+  return z.array(ClientPostSchema).parse(posts);
 };

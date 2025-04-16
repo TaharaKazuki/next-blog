@@ -1,13 +1,13 @@
-import { Post as PostPrisma, User } from '@prisma/client';
+import { Post as PostPrisma, User as UserPrisma } from '@prisma/client';
 import { z } from 'zod';
 
 // Prisma型を参照した型定義
 type PostWithAuthor = PostPrisma & {
-  author: Pick<User, 'name'>;
+  author: Pick<UserPrisma, 'name'>;
 };
 
 // Prismaから取得するPostの型をzodスキーマで定義
-export const PostSchema = z.object({
+const ServerPostSchema = z.object({
   id: z.string(),
   title: z.string(),
   content: z.string(),
@@ -23,7 +23,7 @@ export const PostSchema = z.object({
 }) satisfies z.ZodType<PostWithAuthor>;
 
 // クライアント側で使用するPostの型を定義
-export const ClientPostSchema = PostSchema.transform((post) => ({
+export const ClientPostSchema = ServerPostSchema.transform((post) => ({
   id: post.id,
   title: post.title,
   content: post.content,
@@ -37,10 +37,9 @@ export const ClientPostSchema = PostSchema.transform((post) => ({
 }));
 
 // 型定義（Prisma型を利用）
-export type Post = PostWithAuthor;
-export type ClientPost = z.infer<typeof ClientPostSchema>;
+export type Post = z.infer<typeof ClientPostSchema>;
 
 // PostCardで使用するprops
 export type PostCardProps = {
-  post: ClientPost;
+  post: Post;
 };

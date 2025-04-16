@@ -48,7 +48,7 @@ const dummyPostsData: Omit<
   {
     title: '旅行記録',
     content: '先日訪れた場所についての記録です。',
-    published: false,
+    published: true,
   },
 ];
 

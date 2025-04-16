@@ -1,9 +1,8 @@
 import PostCard from '@/components/post/PostCard';
 import { getPosts } from '@/lib/post';
-import { Post } from '@/types/post';
 
 export default async function PostPage() {
-  const posts = (await getPosts()) as Post[];
+  const posts = await getPosts();
 
   return (
     <div className="container mx-auto px-4 py-8">

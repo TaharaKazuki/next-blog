@@ -36,7 +36,6 @@ export const ClientPostSchema = ServerPostSchema.transform((post) => ({
   },
 }));
 
-// 型定義（Prisma型を利用）
 export type Post = z.infer<typeof ClientPostSchema>;
 
 // PostCardで使用するprops

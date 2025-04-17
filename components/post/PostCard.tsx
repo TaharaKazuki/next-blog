@@ -9,7 +9,7 @@ import { PostCardProps } from '@/types/post';
 export default function PostCard({ post }: PostCardProps) {
   return (
     <Card className="transition-shadow duration-300 hover:shadow-lg">
-      <Link href={`/post/${post.id}`}>
+      <Link href={`/posts/${post.id}`}>
         {post.topImage && (
           <div className="relative h-48 w-full">
             <Image

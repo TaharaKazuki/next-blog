@@ -46,7 +46,9 @@ export const searchPosts = async (search: string) => {
   }));
 
   const posts = await prisma.post.findMany({
-    where: { AND: filters },
+    where: {
+      AND: filters,
+    },
     include: {
       author: {
         select: {
@@ -54,7 +56,9 @@ export const searchPosts = async (search: string) => {
         },
       },
     },
-    orderBy: { createdAt: 'desc' },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
 
   return z.array(ClientPostSchema).parse(posts);

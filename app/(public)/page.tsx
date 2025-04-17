@@ -8,16 +8,19 @@ type Props = {
 export default async function PostPage({ searchParams }: Props) {
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams.search || '';
-  console.log(query);
 
   const posts = query ? await searchPosts(query) : await getPosts();
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
+        {posts.length > 0 ? (
+          posts.map((post) => <PostCard key={post.id} post={post} />)
+        ) : (
+          <p className="text-center text-gray-500">
+            {`「${query}」の検索結果が見つかりませんでした。`}
+          </p>
+        )}
       </div>
     </div>
   );
